@@ -3,9 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 #SQLALCHEMY_DATABASE_URL = ('postgresql://rdmq:rdmq@localhost:5433/rdmq', echo=True)
-engine = create_engine('postgresql://rdmq:rdmq@localhost:5433/clientes', echo=True)
-
-#engine = create_engine(SQLALCHEMY_DATABASE_URL)
+#engine = create_engine('postgresql://rdmq:rdmq@localhost:5433/clientes', echo=True)
+engine = create_engine('postgresql://rdmq:rdmq@db/clientes')
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -17,3 +16,4 @@ def get_db():
         yield db
     finally:
         db.close()
+        

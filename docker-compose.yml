@@ -1,0 +1,39 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:15-alpine
+  #  image: postgres:latest
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=rdmq
+      - POSTGRES_PASSWORD=rdmq
+      - POSTGRES_DB=clientes
+    networks:
+      - redmora
+
+  fastapi:
+    image: servidorfastapi
+    build: .
+    container_name: servidorfastapi
+    restart: always
+    environment:
+      DATABASE_URL: postgresql://rdmq:rdmq@db/clientes
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - redmora    
+#    volumes:
+#      - ./:/app
+    volumes:
+      - .:/app/
+
+networks:
+  redmora:
+
+volumes:
+  postgres_data:
+

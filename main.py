@@ -12,26 +12,16 @@ import pandas as pd
 
 from fastapi.middleware.cors import CORSMiddleware
 
-
 db = SessionLocal()
 
 app = FastAPI()
 
-"""
-origins = ["*"]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-"""
 origins = [
-    "http://localhost",
-#    "http://localhost:4200",
+    "http://localhost:8000",
+    "http://localhost:4200",
     "http://localhost:8080",
     "http://localhost:8081",
+    "http://localhost:8001",
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -40,7 +30,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 
 user_model.Base.metadata.create_all(bind=engine)
 

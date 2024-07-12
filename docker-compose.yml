@@ -19,9 +19,11 @@ services:
     container_name: servidorfastapi
     restart: always
     environment:
-      DATABASE_URL: postgresql://rdmq:rdmq@db/clientes
+      #DATABASE_URL: postgresql://rdmq:rdmq@db/clientes
+      DATABASE_URL: postgresql://morabase_user:Ti4f7376sSV3ez4q9y56iqI8S4u8YoOI@dpg-cq85qsss1f4s73cfuc70-a/morabase
+        engine = create_engine('')
     ports:
-      - "8000:8000"
+      - "8000:80"
     depends_on:
       - db
     networks:

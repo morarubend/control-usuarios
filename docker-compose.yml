@@ -7,9 +7,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=rdmq
-      - POSTGRES_PASSWORD=rdmq
-      - POSTGRES_DB=clientes
+      - POSTGRES_USER=morabase_user                            #rdmq
+      - POSTGRES_PASSWORD=Ti4f7376sSV3ez4q9y56iqI8S4u8YoOI     #rdmq
+      - POSTGRES_DB=morabase                                   #clientes
     networks:
       - redmora
 
@@ -32,6 +32,17 @@ services:
 #      - ./:/app
     volumes:
       - .:/app/
+
+  vue:
+    build: 
+      context: ./vue
+      dockerfile: Dockerfile
+    volumes:
+      - ./vue:/app
+    ports:
+      - "8501:8501"
+    networks:
+      - mynetwork
 
 networks:
   redmora:
